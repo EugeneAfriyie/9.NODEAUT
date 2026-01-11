@@ -92,9 +92,6 @@ const loginUser = async (req,res) =>{
         
 
         // create session or token here (not implemented)
-        // if (!process.env.JWT_SECRET_key) {
-        //     throw new Error("JWT_SECRET_key is not defined in environment variables");
-        // }
         if (!process.env.JWT_SECRET_key) {
             throw new Error("JWT_SECRET_key is not defined in environment variables");
         }
@@ -117,7 +114,8 @@ const loginUser = async (req,res) =>{
         console.log(error)
         res.status(500).json({
             success: false,
-            message: " something went wrong"
+            message: " something went wrong",
+            error: error.message
         })
     }
 }
