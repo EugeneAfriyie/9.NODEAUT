@@ -92,6 +92,13 @@ const loginUser = async (req,res) =>{
         
 
         // create session or token here (not implemented)
+        // if (!process.env.JWT_SECRET_key) {
+        //     throw new Error("JWT_SECRET_key is not defined in environment variables");
+        // }
+        if (!process.env.JWT_SECRET_key) {
+            throw new Error("JWT_SECRET_key is not defined in environment variables");
+        }
+
         const token = jwt.sign({userId: user._id, role: user.role,username: user.username}, process.env.JWT_SECRET_key, {expiresIn: '1h'}) 
 
         res.status(200).json({
